@@ -1,0 +1,53 @@
+
+R version 3.6.2 (2019-12-12) -- "Dark and Stormy Night"
+Copyright (C) 2019 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> data=read.csv("data.csv")
+> Y=data[,2]
+> X=data[,-(1:2)]
+> 
+> set.seed(1)
+> N=nrow(data)
+> test_index=sample(N,0.3*N)
+> train_index=1:N
+> train_index=train_index[-test_index]
+> 
+> 
+> library(randomForest)
+randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+> m=randomForest(x=X[train_index,],y=Y[train_index],ntree=150,important=TRUE)
+> 
+> plot(m)
+> pred=predict(m,newdata=X[test_index,])
+> 
+> 
+> save.image("Workspace.RData")
+> 
+> #library(WeightedROC)
+> #roc=WeightedROC(pred,Y[test_index],weight=X[test_index,1])
+> #plot(TPR~FPR,roc,type="l")
+> #auc=WeightedAUC(roc)
+> #print(auc)
+> #save.image("Workspace.RData")
+> 
+> proc.time()
+    user   system  elapsed 
+1298.776    2.406 1301.555 

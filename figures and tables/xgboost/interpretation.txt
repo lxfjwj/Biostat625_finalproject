@@ -1,0 +1,44 @@
+preprocess methods: 
+#Imputation_method:
+#1:Imputing mean
+#2:Imputing draw (as there are some categorical data)
+#3:Imputation using random forest   (extremely slow, unweighted, but quite recommended in literature)
+#4:MICE(Multivariate Imputation via Chained Equations) (preassuming MAR) (slow, unweighted but recommended)
+#E-M Imputation cannot be used(preassuming MAR and multivariate normal)
+#iterative knn algorithm too slow
+#Literature said there is no available efficient imputation algorithm taken weight into consideration, and that there's no evidence against imputing without weight 
+
+#Feature_selection: Algorithm used in third feature selection/dimension reduction
+#0 Read in existed selection output
+#1 Using SVD and select variables contributing most to eigenvectors with high eigenvalues
+#2 Use random forest predictor on imputed data (a bit slow)(no weighted version of random forest, just include weight as a variable and do selection)
+#3 Lasso (not using threshold, gives own feature selection)
+
+example: imputation 2, feature selection 3: 2-3
+
+
+model_summary 
+rmse/error of each model (default label = status of all vaccine) 
+
+row 2-6: use the data 2019+2020, different data preprocess methods (2-1, 2-3, etc), the rmse calculated by 5-fold cv. 2-3 has the lowest rmse.
+  
+row 10: use data 2019 as train data, treat with 2-3, use data 2020 as test data, treat with 2-0, to gain the same features with 2019. shows rmse on train data and test data
+
+row 11: use data 2019+2020, label = flu1 (SHTFLU12M_A) as train data, data 2019+2020, label = flu2 (SHTPNUEV_A) as test data, shows error (classifier) on train data and test data. 
+
+plots
+cv_aa_bb_cc_dd_ee.jpg:
+aa: y-axis in plot, 
+bb: training data year
+cc: Imputation method
+dd: Feature selection method
+ee: label, default = status of all vaccine
+
+Feature_importance_aa_bb_cc.jpg:
+aa: training data year
+bb: Imputation method
+cc: Feature selection method
+dd: label, default = status of all vaccine
+
+
+
