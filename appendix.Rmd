@@ -1,0 +1,16 @@
+---
+title: "BIOSTAT625 Report: Appendix"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Appendix - ROC curves
+
+![ROC of LASSO](D:/UMICH/FALL 2021 (15.5cr)/BIOS 625 - Computing with Big Data/lasso_roc.png)
+
+![ROC of Ridge](D:/UMICH/FALL 2021 (15.5cr)/BIOS 625 - Computing with Big Data/ridge_roc.png)
+
+![ROC of Random Forrest](D:/UMICH/FALL 2021 (15.5cr)/BIOS 625 - Computing with Big Data/ROC-RF.png)
